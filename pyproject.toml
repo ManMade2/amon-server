@@ -7,24 +7,24 @@ name = "amon-server"
 dynamic = ["version"]
 description = ''
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.12"
 license = "MIT"
 keywords = []
-authors = [
-  { name = "ManMade2", email = "madskris@proton.me" },
-]
+authors = [{ name = "ManMade2", email = "madskris@proton.me" }]
 classifiers = [
-  "Development Status :: 4 - Beta",
-  "Programming Language :: Python",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
+
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = []
+dependencies = [
+  "flask",
+  "numpy",
+  "trimesh",
+  "fast_simplification",
+  "flask-cors",
+  "jsonschema",
+]
 
 [project.urls]
 Documentation = "https://github.com/ManMade2/amon-server#readme"
@@ -35,9 +35,7 @@ Source = "https://github.com/ManMade2/amon-server"
 path = "src/amon_server/__about__.py"
 
 [tool.hatch.envs.types]
-extra-dependencies = [
-  "mypy>=1.0.0",
-]
+extra-dependencies = ["mypy>=1.0.0"]
 [tool.hatch.envs.types.scripts]
 check = "mypy --install-types --non-interactive {args:src/amon_server tests}"
 
@@ -45,17 +43,11 @@ check = "mypy --install-types --non-interactive {args:src/amon_server tests}"
 source_pkgs = ["amon_server", "tests"]
 branch = true
 parallel = true
-omit = [
-  "src/amon_server/__about__.py",
-]
+omit = ["src/amon_server/__about__.py"]
 
 [tool.coverage.paths]
 amon_server = ["src/amon_server", "*/amon-server/src/amon_server"]
 tests = ["tests", "*/amon-server/tests"]
 
 [tool.coverage.report]
-exclude_lines = [
-  "no cov",
-  "if __name__ == .__main__.:",
-  "if TYPE_CHECKING:",
-]
+exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
