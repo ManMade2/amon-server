@@ -24,6 +24,7 @@ dependencies = [
   "fast_simplification",
   "flask-cors",
   "jsonschema",
+  "flask_compress"
 ]
 
 [project.urls]
